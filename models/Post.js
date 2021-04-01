@@ -1,7 +1,7 @@
 const { Schema, model } = require('mongoose');
 const ObjectId = Schema.Types.ObjectId;
-const User = require('./User');
-const Comment = require('./Comment');
+// const User = require('./User');
+// const Comment = require('./Comment');
 
 const postSchema = new Schema({
 	title: {
@@ -16,7 +16,7 @@ const postSchema = new Schema({
 	},
 	author: {
 		type: ObjectId,
-		ref: User,
+		ref: 'User',
 		required: true
 	},
 	tags: {
@@ -26,15 +26,15 @@ const postSchema = new Schema({
 	readTime: String,
 	likes: [{
         type: ObjectId,
-        ref: User
+        ref: 'User'
     }],
 	dislikes: [{
         type: ObjectId,
-        ref: User
+        ref: 'User'
     }],
 	comments: [{
 		type: ObjectId,
-		ref: Comment
+		ref: 'Comment'
 	}]
 }, {
 	timestamps: true

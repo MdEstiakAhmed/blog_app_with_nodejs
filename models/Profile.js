@@ -1,13 +1,18 @@
 const { Schema, model } = require('mongoose');
 const ObjectId = Schema.Types.ObjectId;
-const Post = require('./Post');
-const User = require('./User');
+// const Post = require('./Post');
+// const User = require('./User');
 
 const profileSchema = new Schema({
 	user: {
 		type: ObjectId,
-		ref: User,
+		ref: 'User',
 		required: true
+	},
+	name: {
+		type: String,
+		trim: true,
+		maxLength: 100
 	},
 	title: {
 		type: String,
@@ -29,13 +34,13 @@ const profileSchema = new Schema({
 	posts: [
 		{
 			type: ObjectId,
-			ref: Post
+			ref: 'Post'
 		}
 	],
 	bookmarks: [
 		{
 			type: ObjectId,
-			ref: Post
+			ref: 'Post'
 		}
 	]
 }, {

@@ -1,17 +1,17 @@
 const { Schema, model } = require('mongoose');
 const ObjectId = Schema.Types.ObjectId;
-const User = require('./User');
-const Post = require('./Post');
+// const User = require('./User');
+// const Post = require('./Post');
 
 const commentSchema = new Schema({
 	post: {
 		type: ObjectId,
-		ref: Post,
+		ref: 'Post',
 		required: true
 	},
 	user: {
 		type: ObjectId,
-		ref: User,
+		ref: 'User',
 		required: true
 	},
 	body: {
@@ -26,7 +26,7 @@ const commentSchema = new Schema({
 		},
 		user: {
 			type: ObjectId,
-			ref: User,
+			ref: 'User',
 			required: true
 		},
 		createdAt: {

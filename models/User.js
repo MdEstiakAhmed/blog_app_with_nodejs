@@ -1,9 +1,9 @@
-const { Schema, model } = require('mongoose');
-const ObjectId = Schema.Types.ObjectId;
-const Profile = require('./Profile');
+const { Schema, model} = require('mongoose');
+const { ObjectId } = Schema.Types;
+const { insert, find } = require('./Database');
 
 const userSchema = new Schema({
-	name: {
+	username: {
 		type: String,
 		trim: true,
 		maxLength: 30,
@@ -20,11 +20,35 @@ const userSchema = new Schema({
 	},
 	profile: {
 		type: ObjectId,
-		ref: Profile
+		ref: 'Profile'
 	}
 }, {
 	timestamps: true
 });
 
 const User = model('User', userSchema);
-module.exports = User
+
+module.exports = {
+	registerUser: async(data) => {
+		let {username, email, password} = data;
+		let dataModel = new User({ username, email, password });
+
+		try {
+			let result = await insert(dataModel);
+			return result;
+		} 
+		catch (error) {
+			return error;
+		}
+	},
+
+	findUser: async(data) => {
+		try {
+			let result = await find(User, data)
+			return result
+		} 
+		catch (error) {
+			return error
+		}
+	}
+}

@@ -1,53 +1,71 @@
-<!DOCTYPE html>
-<html lang="en">
+<!-- start tag start -->
+<%- include('../../includes/start.ejs')%>
+<!-- start tag end -->
 
-<head>
-    <!-- head file start -->
-    <%- include('../../includes/header.ejs')%>
-    <!-- head file end -->
-</head>
+<!-- signup page start -->
+<div class="signup-section">
+    <form class="form-signin" action="/auth/signup" method="POST">
+        <div class="text-center mb-4">
+            <img class="mb-4" src="/images/logo.png" alt="" width="72" height="72">
+            <h1 class="h3 mb-3 font-weight-normal">Create a new account</h1>
+        </div>
 
-<body>
-    <!-- navbar start -->
-    <%- include('../../includes/navbar.ejs')%>
-    <!-- navbar end -->
+        <div class="form-label-group">
+            <input type="text" id="inputUsername" class="form-control <%= formError.username ? 'is-invalid' : ''%>"
+                name="username" placeholder="username" value="<%= value.username ? value.username : '' %>" required autofocus>
+            <label for="inputUsername">username</label>
+        </div>
+        <div class="text-danger mb-3 mt-0 text-sm">
+            <%= formError.username ? formError.username : '' %>
+        </div>
 
-    <!-- signup page start -->
-    <div class="signup-section">
-        <form class="form-signin">
-            <div class="text-center mb-4">
-                <img class="mb-4" src="/docs/4.5/assets/brand/bootstrap-solid.svg" alt="" width="72" height="72">
-                <h1 class="h3 mb-3 font-weight-normal">Floating labels</h1>
-            </div>
-    
-            <div class="form-label-group">
-                <input type="email" id="inputEmail" class="form-control" placeholder="Email address" required autofocus>
-                <label for="inputEmail">Email address</label>
-            </div>
-    
-            <div class="form-label-group">
-                <input type="password" id="inputPassword" class="form-control" placeholder="Password" required>
-                <label for="inputPassword">Password</label>
-            </div>
-    
-            <div class="checkbox mb-3">
-                <label>
-                    <input type="checkbox" value="remember-me"> Remember me
-                </label>
-            </div>
-            <button class="btn btn-lg btn-primary btn-block" type="submit">Sign in</button>
-            <p class="mt-5 mb-3 text-muted text-center">&copy; 2017-2020</p>
-        </form>
-    </div>
-    <!-- signup page end -->
+        <div class="form-label-group">
+            <input type="email" id="inputEmail" class="form-control <%= formError.email ? 'is-invalid' : ''%>"
+                name="email" placeholder="Email address" value="<%= value.email ? value.email : '' %>" required autofocus>
+            <label for="inputEmail">Email address</label>
+        </div>
+        <div class="text-danger mb-3 mt-0 text-sm">
+            <span><%= formError.email ? formError.email : '' %></span>
+        </div>
 
-    <!-- footer start -->
-    <%- include('../../includes/footer.ejs')%>
-    <!-- footer end -->
+        <div class="form-label-group">
+            <input type="password" id="inputPassword"
+                class="form-control <%= formError.password ? 'is-invalid' : ''%>" name="password"
+                placeholder="Password" value="<%= value.password ? value.password : '' %>" required>
+            <label for="inputPassword">Password</label>
+        </div>
+        <div class="text-danger mb-3 mt-0 text-sm">
+            <%= formError.password ? formError.password : '' %>
+        </div>
 
-    <!-- script start -->
-    <%- include('../../includes/script.ejs')%>
-    <!-- script end -->
-</body>
+        <div class="form-label-group">
+            <input type="password" id="inputConfirmPassword"
+                class="form-control <%= formError.confirmPassword ? 'is-invalid' : ''%>" name="confirmPassword"
+                placeholder="Confirm Password" required>
+            <label for="inputConfirmPassword">Confirm Password</label>
+        </div>
+        <div class="text-danger mb-3 mt-0 text-sm">
+            <%= formError.confirmPassword ? formError.confirmPassword : '' %>
+        </div>
 
-</html>
+        <button class="btn btn-lg btn-primary btn-block" type="submit">Sign up</button>
+
+        <%
+            if(serverError.error){%>
+                <div class="alert alert-warning alert-dismissible fade show" role="alert">
+                    <strong><%= serverError.error && serverError.error %></strong>
+                    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+            <%}
+        %>
+
+        <p class="text-center mt-3">Already have an account? just <a href="/auth/login">login</a></p>
+    </form>
+</div>
+<!-- signup page end -->
+
+<!-- end tag start -->
+<%- include('../../includes/end.ejs')%>
+<!-- end tag end -->

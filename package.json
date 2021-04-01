@@ -17,8 +17,15 @@
   },
   "homepage": "https://github.com/MdEstiakAhmed/blog_app_with_nodejs#readme",
   "dependencies": {
+    "bcryptjs": "^2.4.3",
+    "config": "^3.3.3",
+    "connect-flash": "^0.1.1",
+    "connect-mongodb-session": "^2.4.1",
+    "dotenv": "^8.2.0",
     "ejs": "^3.1.5",
     "express": "^4.17.1",
+    "express-session": "^1.17.1",
+    "express-validator": "^6.8.0",
     "mongoose": "^5.11.4",
     "morgan": "^1.10.0"
   },
